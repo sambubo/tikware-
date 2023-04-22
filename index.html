@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TikWare</title>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      color: #fff;
+      height: 50px;
+    }
+
+    .banner img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 600px;
+      overflow-y: scroll;
+    }
+
+    .image {
+      width: 100%;
+      max-width: 200px;
+      margin: 10px;
+      border-radius: 20px;
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.1s ease-in-out;
+    }
+
+    .image:hover {
+      transform: scale(1.3);
+    }
+
+    .loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      z-index: 1;
+    }
+
+    .loading img {
+      width: 100px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+	.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* изменение */
+  background-color: #000;
+  color: #fff;
+  height: 50px;
+  padding: 0 20px; /* изменение */
+}
+
+.create-btn {
+  background-color: #A6FFB4;
+  color: #fff;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.create-btn:hover {
+  background-color: #ccc;
+    border-radius: 10px;
+}
+  </style>
+</head>
+<body>
+  <div class="banner">
+  <img src="logo.png" alt="Logo">
+  <p class="banner-text">TikWare</p>
+
+  </div>
+  <div class="loading">
+    <img src="logo.png" alt="loading">
+  </div>
+  <div class="banner">
+  <button class="create-btn">Создать</button>
+</div>
+  <div class="container">
+    <img class="image" src="image2.jpg">
+    <img class="image" src="image5.jpg">
+    <img class="image" src="image6.jpg">
+    <img class="image" src="image1.jpg">
+    <img class="image" src="image3.jpg">
+    <img class="image" src="image4.jpg">
+	<img class="image" src="image7.jpg">
+	<img class="image" src="image8.jpg">
+	<img class="image" src="image9.jpg">
+	<img class="image" src="image10.jpg">
+	<img class="image" src="image11.jpg">
+	<img class="image" src="image12.jpg">
+    <img class="image" src="image13.jpg">
+	<img class="image" src="image14.jpg">
+	<img class="image" src="image15.jpg">
+    <img class="image" src="image16.jpg">
+	    <img class="image" src="image17.jpg">
+		    <img class="image" src="image18.jpg">
+			    <img class="image" src="image19.jpg">
+				    <img class="image" src="image20.jpg">
+  </div>
+ <script>
+    const loadingDiv = document.querySelector('.loading');
+    const imagesContainer = document.querySelector('.container');
+
+    function hideLoading() {
+      loadingDiv.style.display = 'none';
+      imagesContainer.style.opacity = '1';
+    }
+
+    window.onload = function() {
+      setTimeout(hideLoading, 1000);
+    }
+	function handleFileSelect(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      const image = new Image();
+      image.src = event.target.result;
+      image.classList.add('image');
+      document.querySelector('.container').appendChild(image);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  document.querySelector('.create-btn').addEventListener('click', function() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.addEventListener('change', handleFileSelect);
+    input.click();
+  });
+  </script> 
+</body>
+</html>
