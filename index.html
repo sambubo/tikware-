@@ -36,7 +36,7 @@
       padding: 20px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: down;
       align-items: center;
       height: 600px;
       overflow-y: scroll;
@@ -47,12 +47,13 @@
       max-width: 200px;
       margin: 10px;
       border-radius: 20px;
-      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.9);
       transition: transform 0.1s ease-in-out;
     }
 
     .image:hover {
       transform: scale(1.3);
+	  cursor: grab;
     }
 
     .loading {
@@ -66,6 +67,7 @@
       justify-content: center;
       background-color: #000;
       z-index: 1;
+	  border-radius: 5px;
     }
 
     .loading img {
@@ -78,7 +80,7 @@
         transform: rotate(0deg);
       }
       to {
-        transform: rotate(360deg);
+        transform: rotate(0deg);
       }
     }
 	.banner {
@@ -90,6 +92,100 @@
   height: 50px;
   padding: 0 20px; /* изменение */
 }
+button {
+ height: 2.8em;
+ width: 9em;
+ background: transparent;
+ -webkit-animation: jello-horizontal 0.9s both;
+ animation: jello-horizontal 0.9s both;
+ border: 2px solid #016DD9;
+ outline: none;
+ color: #016DD9;
+ font-size: 17px;
+ border-radius: 5px;
+}
+
+button:hover {
+ background: #016DD9;
+ color: #ffffff;
+  border-radius: 100px;
+ -webkit-animation: squeeze3124 0.5s both;
+         animation: squeeze3124 0.5s both;
+}
+
+@-webkit-keyframes squeeze3124 {
+ 0% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+ }
+
+ 30% {
+  -webkit-transform: scale3d(1.25, 0.75, 1);
+  transform: scale3d(1.25, 0.75, 1);
+ }
+
+ 40% {
+  -webkit-transform: scale3d(0.75, 1.25, 1);
+  transform: scale3d(0.75, 1.25, 1);
+ }
+
+ 50% {
+  -webkit-transform: scale3d(1.15, 0.85, 1);
+  transform: scale3d(1.15, 0.85, 1);
+ }
+
+ 65% {
+  -webkit-transform: scale3d(0.95, 1.05, 1);
+  transform: scale3d(0.95, 1.05, 1);
+ }
+
+ 75% {
+  -webkit-transform: scale3d(1.05, 0.95, 1);
+  transform: scale3d(1.05, 0.95, 1);
+ }
+
+ 100% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+ }
+}
+
+@keyframes squeeze3124 {
+ 0% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+ }
+
+ 30% {
+  -webkit-transform: scale3d(1.25, 0.75, 1);
+  transform: scale3d(1.25, 0.75, 1);
+ }
+
+ 40% {
+  -webkit-transform: scale3d(0.75, 1.25, 1);
+  transform: scale3d(0.75, 1.25, 1);
+ }
+
+ 50% {
+  -webkit-transform: scale3d(1.15, 0.85, 1);
+  transform: scale3d(1.15, 0.85, 1);
+ }
+
+ 65% {
+  -webkit-transform: scale3d(0.95, 1.05, 1);
+  transform: scale3d(0.95, 1.05, 1);
+ }
+
+ 75% {
+  -webkit-transform: scale3d(1.05, 0.95, 1);
+  transform: scale3d(1.05, 0.95, 1);
+ }
+
+ 100% {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+ }
+}
 
 .create-btn {
   background-color: #A6FFB4;
@@ -98,26 +194,32 @@
   padding: 5px 20px;
   border-radius: 100px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.1s ease-in-out;
+  transition: scale 0.1s ease-in-out;
+    transition: transform 0.9s ease-in-out;
 }
 
 .create-btn:hover {
   background-color: #ccc;
-    border-radius: 10px;
+  border-radius: 5px;
+  transform: scale(1.3);
 }
+
   </style>
 </head>
 <body>
   <div class="banner">
   <img src="logo.png" alt="Logo">
   <p class="banner-text">TikWare</p>
-
+  <strong>290+ photos cloud</strong>
+<button> Beta
+</button>
   </div>
   <div class="loading">
     <img src="logo.png" alt="loading">
   </div>
   <div class="banner">
-  <button class="create-btn">Создать</button>
+  <button class="create-btn">+</button>
 </div>
   <div class="container">
     <img class="image" src="image2.jpg">
