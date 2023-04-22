@@ -13,14 +13,15 @@
       background-color: white;
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
+      font-family: century gothic;
+	  cursor: url('arrow.png'),auto;
     }
 
     .banner {
       display: flex;
-      align-items: center;
+      align-items: right;
       justify-content: center;
-      background-color: #000;
+      background-color: #434D53;
       color: #fff;
       height: 50px;
     }
@@ -46,14 +47,13 @@
       width: 100%;
       max-width: 200px;
       margin: 10px;
-      border-radius: 20px;
+      border-radius: 15px;
       box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.9);
       transition: transform 0.1s ease-in-out;
     }
 
     .image:hover {
       transform: scale(1.3);
-	  cursor: grab;
     }
 
     .loading {
@@ -193,7 +193,6 @@ button:hover {
   border: none;
   padding: 5px 20px;
   border-radius: 100px;
-  cursor: pointer;
   transition: background-color 0.1s ease-in-out;
   transition: scale 0.1s ease-in-out;
     transition: transform 0.9s ease-in-out;
@@ -205,14 +204,51 @@ button:hover {
   transform: scale(1.3);
 }
 
+.image-container {
+  position: relative;
+}
+
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: none;
+}
+
+.delete-button.show {
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+
+
   </style>
 </head>
 <body>
   <div class="banner">
   <img src="logo.png" alt="Logo">
   <p class="banner-text">TikWare</p>
-  <strong>290+ photos cloud</strong>
-<button> Beta
+  <strong>2900+ photos cloud</strong>
+<button> 2.0
 </button>
   </div>
   <div class="loading">
@@ -222,27 +258,12 @@ button:hover {
   <button class="create-btn">+</button>
 </div>
   <div class="container">
-    <img class="image" src="image2.jpg">
-    <img class="image" src="image5.jpg">
-    <img class="image" src="image6.jpg">
-    <img class="image" src="image1.jpg">
-    <img class="image" src="image3.jpg">
-    <img class="image" src="image4.jpg">
-	<img class="image" src="image7.jpg">
-	<img class="image" src="image8.jpg">
-	<img class="image" src="image9.jpg">
-	<img class="image" src="image10.jpg">
-	<img class="image" src="image11.jpg">
-	<img class="image" src="image12.jpg">
-    <img class="image" src="image13.jpg">
-	<img class="image" src="image14.jpg">
-	<img class="image" src="image15.jpg">
-    <img class="image" src="image16.jpg">
-	    <img class="image" src="image17.jpg">
-		    <img class="image" src="image18.jpg">
-			    <img class="image" src="image19.jpg">
-				    <img class="image" src="image20.jpg">
+    <img class="image" src="welcome.jpg">
   </div>
+  
+
+
+
  <script>
     const loadingDiv = document.querySelector('.loading');
     const imagesContainer = document.querySelector('.container');
@@ -276,6 +297,49 @@ button:hover {
     input.addEventListener('change', handleFileSelect);
     input.click();
   });
+  
+  const imageContainer = document.querySelector('.container');
+const deleteButton = imageContainer.querySelector('.delete-button');
+const overlay = document.createElement('div');
+overlay.classList.add('overlay');
+
+function confirmDelete() {
+  overlay.classList.add('show');
+  const confirmation = document.createElement('div');
+  confirmation.classList.add('confirmation');
+  confirmation.innerHTML = `
+    <p>Хотите ли вы удалить данное изображение?</p>
+    <button class="yes-button">Да</button>
+    <button class="no-button">Нет</button>
+  `;
+  overlay.appendChild(confirmation);
+  document.body.appendChild(overlay);
+  const yesButton = confirmation.querySelector('.yes-button');
+  const noButton = confirmation.querySelector('.no-button');
+  yesButton.addEventListener('click', deleteImage);
+  noButton.addEventListener('click', () => {
+    overlay.classList.remove('show');
+    overlay.removeChild(confirmation);
+  });
+}
+
+function deleteImage() {
+  imageContainer.remove();
+  overlay.classList.remove('show');
+}
+
+imageContainer.addEventListener('mouseenter', () => {
+  deleteButton.classList.add('show');
+});
+
+imageContainer.addEventListener('mouseleave', () => {
+  deleteButton.classList.remove('show');
+});
+
+deleteButton.addEventListener('click', confirmDelete);
+
+  
+
   </script> 
 </body>
 </html>
